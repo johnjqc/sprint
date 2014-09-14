@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+
+<body>
+
+<ui:composition template="template.xhtml">
+	<ui:define name="body">
+	
+        <h:form id="loginForm">         
+            
+            <rich:panel header="LOGIN"  style="border-width:0px; border-color: rgb(142, 173, 219)">
+					<table style="margin:auto;">
+						<tr style="height: 30px">
+							<td style="width: 70px"><h:outputText style="text-align:center;" value="Usuario: ">
+							</h:outputText></td>
+							<td width="250px">
+							<h:inputText value="#{loginBean.uname}" style="width:98%" maxlength="30"/>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 70px"><h:outputText style="text-align:center;" value="Contraseña: ">
+							</h:outputText></td>
+							<td width="250px">
+							<h:inputSecret value="#{loginBean.password}" style="width:98%" maxlength="100"/>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="right">
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{loginBean.loginProject}"  value="Login" />
+							</h:panelGrid>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+							<h:outputText id="expiredMessage" rendered="flase" style="text-align:center; color:red" value="hola">
+							</h:outputText>
+							<h:message for="expiredMessage"/>
+							</td>
+						</tr>
+					</table>
+ 				</rich:panel>
+        </h:form>
+
+	</ui:define>
+	</ui:composition>
+	
+	</body>
+</html>

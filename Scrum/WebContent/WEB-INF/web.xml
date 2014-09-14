@@ -10,6 +10,13 @@
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  	<context-param>  
+        <param-name>org.richfaces.skin</param-name>  
+        <param-value>blueSky</param-value>  
+    </context-param> 
+    
+
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
@@ -26,8 +33,8 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  
   <welcome-file-list>
-    <welcome-file>faces/index.xhtml</welcome-file>
-    <welcome-file>faces/index.jsp</welcome-file>
+    <welcome-file>login.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>
