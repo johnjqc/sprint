@@ -15,6 +15,14 @@
         <param-name>org.richfaces.skin</param-name>  
         <param-value>blueSky</param-value>  
     </context-param> 
+    <context-param>
+	    <param-name>version</param-name>
+	    <param-value>Scrum V 1.0 (19 de Septiembre 2014). Copyright © 2014</param-value>
+	  </context-param>
+	  
+	<session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
     
 
   <servlet-mapping>

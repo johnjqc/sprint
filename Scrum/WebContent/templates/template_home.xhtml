@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+    <title>Scrum</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</h:head>
+
+<h:body>
+	<table
+		style="width: 100%; height: 100%; margin: auto; background-color: #FFFFFF;"
+		bordercolor="#FFFFFF" cellpadding="0" cellspacing="0">
+		<colgroup style="width: 15%;" />
+		<colgroup style="width: 85%" />
+		<tr>
+			<td
+				style="background-image: url(../../imagenes/Header_ReDesign.png); background-repeat: no-repeat; background-color: #003C66">
+			</td>
+			<td style="background-repeat: no-repeat; background-color: #003C66; height: 30px;">
+				<h:form id="formHeader">
+					<table width="100%;" align="right">
+						<colgroup style="width: 860px" />
+						<colgroup style="width: 20px" />
+						<colgroup style="width: 170px" />
+						<colgroup style="width: 40px" />
+						<colgroup style="width: 40px" />
+						<colgroup style="width: 40px" />
+						<tr>
+							<td valign="middle"></td>
+							<td valign="middle">
+								<h:commandButton id="changePassBtn"
+									image="/imagenes/user.png" action="changePass" /> <rich:tooltip
+									value="Cambio Clave" target="changePassBtn" /></td>
+							<td valign="middle">
+								<h:outputText style="color:white; font-family: Arial,Verdana,sans-serif; font-size:11px; font-weight:bold;" value="#{homeBean.uname}" /></td>
+							<td valign="middle"><ui:insert name="helpArea" /></td>
+							<td valign="middle"><h:commandButton id="logoutBtn"
+									image="/imagenes/logout.png"
+									action="#{homeBean.logout}" /> <rich:tooltip
+									value="Logout" target="logoutBtn" /></td>
+						</tr>
+					</table>
+				</h:form>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #b3C92c; height: 4px;" colspan="2"></td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; background-color: #FFFFFF;"><h:form
+					id="principalForm">
+					<rich:panelMenu style="aling:left" expandSingle="false">
+						<rich:panelMenuGroup label="MainMenu"
+							id="MainMenu" />
+					</rich:panelMenu>
+					<rich:panelMenu style="aling:left" itemMode="ajax"
+						groupMode="client" expandSingle="false"
+						groupExpandedLeftIcon="triangleUp"
+						groupCollapsedLeftIcon="triangleDown"
+						topGroupExpandedRightIcon="chevronUp"
+						topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc">
+						
+					</rich:panelMenu>
+				</h:form></td>
+			<td
+				style="height: 800px; vertical-align: top; background-color: #FFFFFF;">
+				<ui:insert name="WorkArea" />
+			</td>
+		</tr>
+	</table>
+	<h:outputLabel
+		style="color:#FFFFFF; width:100%; font:italic bold 10px arial,sans-serif; text-align:center;"
+		value="#{facesContext.externalContext.initParameterMap['version']}, Derechos"></h:outputLabel>
+	<!-- Inicio Modal Status -->
+	<a4j:status name="estadoCargar" id="estadoCargar"
+		onstart="#{rich:component('statusPanel')}.show();"
+		onstop="#{rich:component('statusPanel')}.hide();" />
+	<rich:popupPanel id="statusPanel" header="Cargando"
+		height="90" width="190">
+		<table>
+			<tr>
+				<td style="width: 40%"><h:graphicImage style="aling:center;"
+						height="40" value="../imagenes/loading_bar.gif"
+						alt="loading_bar" /></td>
+				<td>Espere por favor</td>
+			</tr>
+		</table>
+	</rich:popupPanel>
+	<!-- Fin Modal Status -->
+</h:body>
+</html>
