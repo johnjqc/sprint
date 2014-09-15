@@ -10,12 +10,12 @@
 
 <body>
 
-<ui:composition template="template.xhtml">
+<ui:composition template="/templates/template_login.xhtml">
 	<ui:define name="body">
 	
         <h:form id="loginForm">         
             
-            <rich:panel header="LOGIN"  style="border-width:0px; border-color: rgb(142, 173, 219)">
+            <rich:panel header="LOGIN"  style="border-width:1px; border-color: rgb(142, 173, 219); width:300px;" >
 					<table style="margin:auto;">
 						<tr style="height: 30px">
 							<td style="width: 70px"><h:outputText style="text-align:center;" value="Usuario: ">
@@ -33,10 +33,8 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td align="right">
-							<h:panelGrid columns="2">
+							<td align="right" style="padding-top: 10px">
 								<h:commandButton action="#{loginBean.loginProject}"  value="Login" />
-							</h:panelGrid>
 							</td>
 						</tr>
 						<tr>

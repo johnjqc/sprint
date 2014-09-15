@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/template_home.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-
-
-        <h:form>      
-            <p>Welcome, #{loginBean.uname}</p>
-        <h:commandButton action="#{loginBean.logout}" value="Logout" />
-    </h:form>
-
+	
+	<ui:define name="WorkArea">
+		<h:form>      
+            <p>Welcome, #{homeBean.uname}</p>
+    	</h:form>	
+	</ui:define>
 </ui:composition>
