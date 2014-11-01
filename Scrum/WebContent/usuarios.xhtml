@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/template_home.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<ui:define name="WorkArea">
+		<h:panelGrid columns="2" width="500px" style="margin:auto">
+			<rich:panel header="Usuarios" id="usuariosPanel">
+				<h:form id="frmUser">
+					<h:panelGrid columns="2" width="90%" style="margin:auto">
+
+						<h:panelGrid columns="2" width="90%" style="margin:auto">
+							<h:outputText value="Usuario: " />
+							<h:inputText value="#{usuariosBean.newUser.usuario}" />
+
+							<h:outputText value="Clave: " />
+							<h:inputSecret value="#{usuariosBean.newUser.clave}" />
+
+							<h:outputText value="Correo: " />
+							<h:inputText value="#{usuariosBean.newUser.correo}" />
+						</h:panelGrid>
+						<a4j:commandButton id="newUser" value="Nuevo"
+							render="usuariosPanel"
+							actionListener="#{usuariosBean.insertUser}"
+							execute="@form userList" />
+
+					</h:panelGrid>
+					<rich:extendedDataTable id="userList"
+						value="#{usuariosBean.usuarios}" rows="10" var="user"
+						selection="#{usuariosBean.selection}">
+						<rich:column width="200px">
+							<f:facet name="header">
+								<h:outputText value="Usuario" />
+							</f:facet>
+							<h:outputText value="#{user.usuario}" />
+						</rich:column>
+						<rich:column width="300px">
+							<f:facet name="header">
+								<h:outputText value="Correo" />
+							</f:facet>
+							<h:outputText value="#{user.correo}" />
+						</rich:column>
+						<a4j:ajax event="selectionchange"
+							listener="#{usuariosBean.selectionListener}" render="usuariosPanel" />
+					</rich:extendedDataTable>
+					<rich:dataScroller for="userList" maxPages="5" />
+					<a4j:commandButton id="updateUser" value="Actualizar"
+						render="usuariosPanel" actionListener="#{usuariosBean.insertUser}"
+						execute="@frmUser userList"
+						rendered="#{usuariosBean.updateUserRender}" />
+					<a4j:commandButton id="deleteUser" value="Delete"
+						render="usuariosPanel" actionListener="#{usuariosBean.insertUser}"
+						execute="@frmUser userList"
+						rendered="#{usuariosBean.updateUserRender}" />
+				</h:form>
+			</rich:panel>
+			
+			
+		</h:panelGrid>	
+	</ui:define>
+</ui:composition>
