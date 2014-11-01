@@ -37,17 +37,10 @@
 								<h:commandButton action="#{loginBean.loginProject}"  value="Login" />
 							</td>
 						</tr>
-						<tr>
-							<td colspan="2">
-							<h:outputText id="expiredMessage" rendered="flase" style="text-align:center; color:red" value="hola">
-							</h:outputText>
-							<h:message for="expiredMessage"/>
-							</td>
-						</tr>
 					</table>
  				</rich:panel>
         </h:form>
-
+		<h:message for="loginForm" style="color:red"/>
 	</ui:define>
 	</ui:composition>
 	

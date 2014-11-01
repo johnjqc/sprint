@@ -37,11 +37,11 @@ xmlns:rich="http://richfaces.org/rich">
 									image="/imagenes/user.png" action="changePass" /> <rich:tooltip
 									value="Cambio Clave" target="changePassBtn" /></td>
 							<td valign="middle">
-								<h:outputText style="color:white; font-family: Arial,Verdana,sans-serif; font-size:11px; font-weight:bold;" value="#{homeBean.uname}" /></td>
+								<h:outputText style="color:white; font-family: Arial,Verdana,sans-serif; font-size:11px; font-weight:bold;" value="#{loginBean.uname}" /></td>
 							<td valign="middle"><ui:insert name="helpArea" /></td>
 							<td valign="middle"><h:commandButton id="logoutBtn"
 									image="/imagenes/logout.png"
-									action="#{homeBean.logout}" /> <rich:tooltip
+									action="#{loginBean.logout}" /> <rich:tooltip
 									value="Logout" target="logoutBtn" /></td>
 						</tr>
 					</table>
@@ -54,16 +54,17 @@ xmlns:rich="http://richfaces.org/rich">
 		<tr>
 			<td style="vertical-align: top; background-color: #FFFFFF;"><h:form
 					id="principalForm">
-					<rich:panelMenu style="aling:left" expandSingle="false">
-						<rich:panelMenuGroup label="MainMenu"
-							id="MainMenu" />
+					<rich:panelMenu style="aling:left" expandSingle="false" >
+						<rich:panelMenuGroup label="MainMenu" id="MainMenu" action="#{homeBean.toViewHome}" />
 					</rich:panelMenu>
-					<rich:panelMenu style="aling:left" itemMode="ajax"
+					<rich:panelMenu style="aling:left" itemMode="ajax" id="MenuId"
 						groupMode="client" expandSingle="false"
 						groupExpandedLeftIcon="triangleUp"
 						groupCollapsedLeftIcon="triangleDown"
 						topGroupExpandedRightIcon="chevronUp"
 						topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc">
+						
+						<rich:panelMenuItem label="Usuarios" action="#{homeBean.toViewUsusuarios}" rendered="#{loginBean.renderGestionUsuarios}" />
 						
 					</rich:panelMenu>
 				</h:form></td>

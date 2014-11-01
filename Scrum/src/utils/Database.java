@@ -8,7 +8,7 @@ public class Database {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dbname", "root", "dbpass");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/scrum", "root", "root");
             return con;
         } catch (Exception ex) {
             System.out.println("Database.getConnection() Error -->" + ex.getMessage());

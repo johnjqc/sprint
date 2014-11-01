@@ -1,19 +1,21 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import utils.Util;
+import dao.UserDAO;
 
 
  
 @ManagedBean(name = "loginBean")
-@ViewScoped
+@SessionScoped
 public class LoginBean implements Serializable {
  
     private static final long serialVersionUID = 1L;
@@ -45,31 +47,36 @@ public class LoginBean implements Serializable {
     }
  
     public String loginProject() {
-        boolean result = true;//UserDAO.login(uname, password);
-        if (result) {
-            // get Http Session and store username
-            HttpSession session = Util.getSession();
-            session.setAttribute("username", uname);
- 
-            return "home";
-        } else {
- 
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                    "Invalid Login!",
-                    "Please Try Again!"));
- 
-            // invalidate session, and redirect to other pages
- 
-            //message = "Invalid Login. Please Try Again!";
-            return "login";
-        }
+    	boolean result = UserDAO.login(uname, password);
+    	if (result) {
+    		HttpSession session = Util.getSession();
+    		session.setAttribute("username", uname);
+
+    		return "home";
+    	} else {
+    		FacesContext.getCurrentInstance().addMessage(
+    				"loginForm", new FacesMessage(FacesMessage.SEVERITY_WARN,
+    						"Invalid Login!",
+    						"Invalid Login!... Please Try Again!"));
+
+    		return null;
+    	}
     }
- 
+
     public String logout() {
-      HttpSession session = Util.getSession();
-      session.invalidate();
-      return "login";
-   }
+    	FacesContext c = FacesContext.getCurrentInstance();
+    	HttpSession session = Util.getSession();
+    	session.invalidate();
+    	return "login";
+    }
+    
+    public boolean isRenderGestionUsuarios() {
+    	List<String> perfiles = UserDAO.getUsuarioPerfiles(uname);
+    	for (String perfil :  perfiles) {
+    		if (perfil.equalsIgnoreCase("gestion_usuarios")) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 }

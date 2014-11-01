@@ -11,19 +11,23 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   
-  	<context-param>  
-        <param-name>org.richfaces.skin</param-name>  
-        <param-value>blueSky</param-value>  
-    </context-param> 
-    <context-param>
-	    <param-name>version</param-name>
-	    <param-value>Scrum V 1.0 (19 de Septiembre 2014). Copyright © 2014</param-value>
-	  </context-param>
-	  
-	<session-config>
-    <session-timeout>1</session-timeout>
+  <context-param>
+	<param-name>org.richfaces.skin</param-name>
+	<param-value>blueSky</param-value>
+  </context-param>
+  <context-param>
+		<param-name>version</param-name>
+		<param-value>Scrum V 1.0 (19 de Septiembre 2014). Copyright © 2014</param-value>
+  </context-param>
+
+  <session-config>
+		<session-timeout>1</session-timeout>
   </session-config>
-    
+  
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/login.jsf</location>
+  </error-page>
 
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
@@ -45,4 +49,36 @@
   <welcome-file-list>
     <welcome-file>login.xhtml</welcome-file>
   </welcome-file-list>
+  
+  
+  
+  <listener>
+      <listener-class>
+          com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+      </listener-class>
+  </listener>
+  <servlet>
+      <servlet-name>sayhello</servlet-name>
+      <servlet-class>
+          com.sun.xml.ws.transport.http.servlet.WSServlet
+      </servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>sayhello</servlet-name>
+      <url-pattern>/sayhello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>counter</servlet-name>
+      <servlet-class>
+          com.sun.xml.ws.transport.http.servlet.WSServlet
+      </servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>counter</servlet-name>
+      <url-pattern>/counter</url-pattern>
+  </servlet-mapping>
+	    
 </web-app>
